@@ -72,15 +72,51 @@ section{
 
 .disabled{
     pointer-events: none;
+    display: block;
+}
+.bottom{
+    width: 90%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1.5rem;
+
+}
+.timer{
+    /* width: 220px; */
+    height: 60px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: rgb(80, 103, 87);
+
+}
+.time{
+    font-weight: bold;
+    color:black;
 }
 .reset{
     width:220px;
     height: 60px;
     border-radius: 10px;
     letter-spacing: 0.1rem;
-    font-size: 21px;
     text-transform: uppercase;
     border: none;
     background-color: rgb(80, 103, 87);
     color: wheat;
+    font-size: 1.5rem;
+
+}
+.score{
+    height: 60px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: rgb(80, 103, 87);
+}
+.total{
+    font-weight: bold;
+    color:black;
+
 }
