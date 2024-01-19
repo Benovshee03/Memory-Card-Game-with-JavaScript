@@ -1,0 +1,86 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+section{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    gap: 10px;
+}
+.cards{
+    width: 60%;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.card {
+    width: 24%;
+    height: 28vh;
+    position: relative;
+    cursor: pointer;
+    perspective: 1000px;
+    margin-top: 10px;
+}
+.first__card{
+    width: 180px;
+    height: 100%;
+    position: absolute;
+    visibility: hidden;
+    transform: rotateY(180deg);
+}
+.card img{
+    width: 180px;
+    height: 100%;
+    position: absolute;
+
+}
+
+.second__card{
+    width: 180px;
+    height: 100%;
+    background-color: rgb(197, 194, 194);
+    position: absolute;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 100px;
+    color: rgb(69, 105, 79);
+
+}
+.card.flip .first__card{
+    visibility: inherit;
+    transform: rotateY(0deg);
+    transition: transform 0.5s ease-out,  1s ease-out;
+
+}
+.card.flip .second__card {
+    transform: rotateY(-180deg);
+    transition: transform 0.5s ease-out,  1s ease-out;
+    opacity: 0;
+}
+
+
+
+
+.disabled{
+    pointer-events: none;
+}
+.reset{
+    width:220px;
+    height: 60px;
+    border-radius: 10px;
+    letter-spacing: 0.1rem;
+    font-size: 21px;
+    text-transform: uppercase;
+    border: none;
+    background-color: rgb(80, 103, 87);
+    color: wheat;
+}
