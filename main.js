@@ -16,16 +16,28 @@ let images = [
   "/Img/card6.png",
 ];
 
+// Shuffle the images array
+
+function shuffleArray(array) {
+  let shuffledArray = [...array];
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const randomIndex = Math.floor(Math.random() * (i + 1));
+    [shuffledArray[i], shuffledArray[randomIndex]] = [shuffledArray[randomIndex], shuffledArray[i]];
+  }
+  return shuffledArray;
+}
+
+let shuffledImages = shuffleArray(images);
+
 let rotateCard = [];
-cards.forEach((card) => {
+cards.forEach((card, index) => {
   let firstCard = document.createElement("div");
   let secondCard = document.createElement("div");
   let image = document.createElement("img");
 
   firstCard.className = "first__card";
   secondCard.className = "second__card";
-  let randomSetImage = images[Math.floor(Math.random() * images.length)];
-  image.src = randomSetImage;
+  image.src = shuffledImages[index];
   card.appendChild(firstCard);
   card.appendChild(secondCard);
   firstCard.appendChild(image);
@@ -39,6 +51,7 @@ cards.forEach((card) => {
     );
   });
 });
+
 
 function flipCard(clickedCard) {
   if (rotateCard.length < 2) {
@@ -58,6 +71,8 @@ function flipCard(clickedCard) {
             card.querySelector(".second__card").style.zIndex = "-1";
             card.querySelector(".second__card").style.opacity = "0";
             card.querySelector('.first__card').style.transform = 'rotateY(0deg)';
+            card.querySelector('.first__card').style.visibility = 'inherit';
+            card.querySelector('.first__card').style.opacity = '0.7';
           });
 
           rotateCard = [];
@@ -72,13 +87,11 @@ function flipCard(clickedCard) {
             card.classList.remove("flip", "disabled");
             card.querySelector(".second__card").style.display = 'block';
           });
-
           rotateCard = [];
-
           cards.forEach((otherCard) => {
             otherCard.classList.remove("disabled");
           });
-        }, 1500);
+        }, 1200);
       }
     }
   }
