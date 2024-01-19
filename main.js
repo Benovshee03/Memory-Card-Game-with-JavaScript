@@ -32,45 +32,55 @@ cards.forEach((card) => {
   secondCard.innerHTML = "?";
   card.addEventListener("click", () => {
     flipCard(card);
-    console.log(rotateCard[0] && rotateCard[0].querySelector('.first__card img').src ===rotateCard[1].querySelector('.first__card img').src);
-
+    console.log(
+      rotateCard[0] &&
+        rotateCard[0].querySelector(".first__card img").src ===
+          rotateCard[1].querySelector(".first__card img").src
+    );
   });
 });
 
-function flipCard(card) {
-    if (rotateCard.length < 2) {
-        card.classList.add("flip");
-        rotateCard.push(card);
+function flipCard(clickedCard) {
+  if (rotateCard.length < 2) {
+    clickedCard.classList.add("flip");
+    rotateCard.push(clickedCard);
 
-        if (rotateCard.length === 2) {
-            cards.forEach((otherCard) => {
-                if (!rotateCard.includes(otherCard)) {
-                    otherCard.classList.add("disabled");
-                }
+    if (rotateCard.length === 2) {
+      const backImageSrc = rotateCard[0].querySelector(".first__card img").src;
+      const backSecondImageSrc = rotateCard[1].querySelector(".first__card img").src;
 
-                const backImage = rotateCard[0].querySelector('.first__card img').src;
-                const backSecondImage = rotateCard[1].querySelector('.first__card img').src;
-                const frontImage = rotateCard[0].querySelector('second__image').src
-                const frontSecondImage = rotateCard[1].querySelector('second__image').src
-                if (backImage === backSecondImage) {
-                    console.log(true);
-                    frontImage.style.opacity= "0";
-                    frontSecondImage.style.opacity= "0";
-                    backImage.style.display ,backSecondImage.style.display = "block";
-                    backImage.style.transform , backSecondImage.style.transform= "rotateY(0deg)";
-                }
-            });
-          setTimeout(() => {
-            rotateCard.forEach((card) => {
-              card.classList.remove("flip", "disabled");
-            });
-            
-            rotateCard = [];
+      if (backImageSrc === backSecondImageSrc) {
+        console.log(true);
+        setTimeout(() => {
+          rotateCard.forEach((card) => {
+            card.classList.add("disabled");
+            card.classList.remove("flip");
+            card.querySelector(".second__card").style.zIndex = "-1";
+            card.querySelector(".second__card").style.opacity = "0";
+            card.querySelector('.first__card').style.transform = 'rotateY(0deg)';
+          });
 
-            cards.forEach((otherCard) => {
-              otherCard.classList.remove("disabled");
-            });
-          }, 1500);
-        }
+          rotateCard = [];
+
+          cards.forEach((otherCard) => {
+            otherCard.classList.remove("disabled");
+          });
+        }, 1500);
+      } else {
+        setTimeout(() => {
+          rotateCard.forEach((card) => {
+            card.classList.remove("flip", "disabled");
+            card.querySelector(".second__card").style.display = 'block';
+          });
+
+          rotateCard = [];
+
+          cards.forEach((otherCard) => {
+            otherCard.classList.remove("disabled");
+          });
+        }, 1500);
       }
+    }
+  }
 }
+
