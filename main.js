@@ -1,6 +1,20 @@
 let cardsContainer = document.querySelector(".cards");
 let cards = document.querySelectorAll(".card");
-
+let timer  = document.querySelector('.time')
+var minute = 0;
+var second = 0
+function getDate(){
+  setTimeout(()=>{
+    second++
+    if(second === 60){
+      minute+=1
+      second=0
+      return getDate()
+    }
+  },1000)
+}
+let countdown = getDate()
+timer.innerHTML = countdown
 let images = [
   "./Img/card1.png",
   "./Img/card2.png",
@@ -16,7 +30,6 @@ let images = [
   "/Img/card6.png",
 ];
 
-// Shuffle the images array
 
 function shuffleArray(array) {
   let shuffledArray = [...array];
@@ -44,11 +57,7 @@ cards.forEach((card, index) => {
   secondCard.innerHTML = "?";
   card.addEventListener("click", () => {
     flipCard(card);
-    console.log(
-      rotateCard[0] &&
-        rotateCard[0].querySelector(".first__card img").src ===
-          rotateCard[1].querySelector(".first__card img").src
-    );
+
   });
 });
 
@@ -69,10 +78,13 @@ function flipCard(clickedCard) {
             card.classList.add("disabled");
             card.classList.remove("flip");
             card.querySelector(".second__card").style.zIndex = "-1";
+
             card.querySelector(".second__card").style.opacity = "0";
             card.querySelector('.first__card').style.transform = 'rotateY(0deg)';
             card.querySelector('.first__card').style.visibility = 'inherit';
             card.querySelector('.first__card').style.opacity = '0.7';
+            card.querySelector('.first__card').style.transition = '1s';
+
           });
 
           rotateCard = [];
@@ -86,6 +98,9 @@ function flipCard(clickedCard) {
           rotateCard.forEach((card) => {
             card.classList.remove("flip", "disabled");
             card.querySelector(".second__card").style.display = 'block';
+            card.querySelector(".second__card").style.display = "flex";
+            card.querySelector(".second__card").style.justifyContent = "center";
+            card.querySelector(".second__card").style.alignItems = "center";
           });
           rotateCard = [];
           cards.forEach((otherCard) => {
