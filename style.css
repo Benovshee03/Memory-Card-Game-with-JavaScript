@@ -84,13 +84,12 @@ section{
 
 }
 .timer{
-    /* width: 220px; */
+    width: 180px;
     height: 60px;
     display: flex;
     align-items: center;
     gap: 6px;
     color: rgb(80, 103, 87);
-
 }
 .time{
     font-weight: bold;
@@ -106,7 +105,7 @@ section{
     background-color: rgb(80, 103, 87);
     color: wheat;
     font-size: 1.5rem;
-
+    cursor: pointer;
 }
 .score{
     height: 60px;
