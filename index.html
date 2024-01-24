@@ -39,7 +39,19 @@
         <div class="bottom">
             <div class="timer">Time: <span class="time"></span></div>
             <button class="reset" onclick="window.location.reload()">Reset</button>
-            <div class="score">Your Score: <span class="total">560</span></div>
+            <div class="score">Your Score: <span class="total"></span></div>
+        </div>
+        <div id="demo-modal" class="modal">
+            <div class="modal__content">
+                <h1>You Complete the <span>Card Memory Game</span></h1>
+        
+                <!-- <pre class="pre"> -->
+                    <div class="finished">
+                        Score: <span class="finish__score"></span>       Time:<span class="finish__time"></span> 
+                    </div>
+                <button class="restart">Restart</button>
+                <a  class="modal__close">&times;</a>
+            </div>
         </div>
     </section>
     <script  src="./main.js"></script>
