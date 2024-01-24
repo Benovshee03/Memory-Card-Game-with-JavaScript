@@ -155,7 +155,7 @@ section{
     align-items: center;
     h1{
         span{
-            color: red;
+            color:rgb(135, 27, 27);
         }
 
     }
@@ -188,6 +188,6 @@ section{
     align-items: center;
     justify-content: space-around;
     span{
-        color: red;
+        color: rgb(135, 27, 27);
     }
 }

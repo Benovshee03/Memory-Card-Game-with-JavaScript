@@ -8,9 +8,13 @@ var second = 0;
 var score = 0;
 let endValue;
 let initialValue = [];
-let startAudio = new Audio("./Audio/start.wav")
+let startAudio = new Audio("./Audio/start.mp3")
+console.log(startAudio);
+let finishAudio = new Audio("./Audio/final.mp3")
+reset.addEventListener("click",startAudio.play())
 
-let finishAudio = new Audio()
+let trueAudio = new Audio("./Audio/true.mp3")
+let falseAudio = new Audio("./Audio/false.mp3")
 cards.forEach(() => {
   initialValue.push(false);
 });
@@ -37,7 +41,6 @@ reset.addEventListener(
   "click",
   () => {
     clearInterval(intervalId);
-    startAudio.play()
   },
   2000
 );
@@ -121,6 +124,7 @@ function flipCard(clickedCard) {
             card.querySelector(".first__card").style.transition = "1s";
             score+=20
             document.querySelector(".total").innerHTML=score
+            trueAudio.play()
           });
           rotateCard = [];
           matchCount++;
@@ -129,6 +133,7 @@ function flipCard(clickedCard) {
           });
 
           if (matchCount === cards.length / 2) {
+            finishAudio.play()
             document.querySelector(".modal").style.opacity = 1;
             document.querySelector(".modal").style.visibility = "inherit";
             document.querySelector(".modal").style.display = "flex";
@@ -140,12 +145,12 @@ function flipCard(clickedCard) {
             document.querySelector(".finish__score").innerHTML=score
             document.querySelector(".restart").addEventListener("click",()=>{
               window.location.reload()
-              startAudio.play()
             })
           }
         } else {
           rotateCard.forEach((card) => {
             card.classList.remove("flip", "disabled");
+            falseAudio.play()
           });
           rotateCard = [];
           cards.forEach((otherCard) => {
